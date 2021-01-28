@@ -49,7 +49,7 @@ def get_or_create_shib_user():
     return "No value for request.remote_user--is this being called outside a request context?"
 
 
-@app.route('/oauth/authorize', methods=['GET', 'POST'])
+@app.route('/cogwheel/oauth/authorize', methods=['GET', 'POST'])
 def authorize():
     current_user = get_or_create_shib_user()
 
@@ -68,7 +68,7 @@ def authorize():
     return server.create_authorization_response(grant_user=None)
 
 
-@app.route('/oauth/token', methods=['POST'])
+@app.route('/cogwheel/oauth/token', methods=['POST'])
 def issue_token():
     """
     The client should make the request with a Basic auth header and
@@ -77,12 +77,12 @@ def issue_token():
     return server.create_token_response()
 
 
-@app.route('/.well-known/oauth-authorization-server')
+@app.route('/cogwheel/.well-known/oauth-authorization-server')
 def well_known():
     return server.metadata
 
 
-@app.route('/jwks.json')
+@app.route('/cogwheel/jwks.json')
 def jwks():
     with open(app.config["PUBLIC_KEY_PATH"]) as f:
         public_key_data = f.read()
