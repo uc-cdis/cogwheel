@@ -78,4 +78,9 @@ class OpenIDCode(oidcgrants.OpenIDCode):
         #if 'email' in scope:
         #    user_info['email'] = user.email
 
+        # Gen3/Fence hack for use with Fence's "Cognito" IdP,
+        # which requires an "email" field...
+        user_info['email'] =  user.shib_id
+        user_info['email_verified'] =  True
+
         return user_info
