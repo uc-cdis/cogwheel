@@ -1,6 +1,10 @@
 from authlib.oauth2.rfc6749 import grants as oauth2grants
 from authlib.oidc.core import grants as oidcgrants
 from authlib.oidc.core import UserInfo
+from flask import request
+
+from main import app
+from models import db, AuthorizationCode, User
 
 class AuthorizationCodeGrant(oauth2grants.AuthorizationCodeGrant):
 

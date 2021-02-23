@@ -6,11 +6,11 @@ from authlib.integrations.sqla_oauth2 import (
 from authlib.jose import JsonWebKey, KeySet
 from flask import Flask, request, render_template
 
+app = Flask(__name__)
+
 from models import db, AuthorizationCode, Client, Token, User
 from auth import AuthorizationCodeGrant, OpenIDCode
 
-
-app = Flask(__name__)
 
 # Load configuration--default, then custom. Path to latter set in Dockerfile.
 app.config.from_object('default_settings')
