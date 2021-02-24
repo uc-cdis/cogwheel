@@ -86,7 +86,7 @@ ENV PATH=/root/.poetry/bin:$PATH
 # of the WSGI virtualhost def.
 RUN poetry config virtualenvs.in-project true \
     # Change this to just "poetry install" if you want to use dev dependencies
-    && poetry install --no-dev
+    && poetry install
 
 # Export Unicode locale so that register_client.py can be invoked via docker exec.
 # See: https://click.palletsprojects.com/en/7.x/python3/#python-3-surrogate-handling
